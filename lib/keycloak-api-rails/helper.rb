@@ -1,11 +1,14 @@
 module Keycloak
   class Helper
     
-    CURRENT_USER_ID_KEY     = "keycloak:keycloak_id"
-    CURRENT_USER_EMAIL_KEY  = "keycloak:email"
-    CURRENT_USER_LOCALE_KEY = "keycloak:locale"
-    ROLES_KEY               = "keycloak:roles"
-    QUERY_STRING_TOKEN_KEY  = "authorizationToken"
+    CURRENT_USER_ID_KEY           = "keycloak:keycloak_id"
+    CURRENT_USER_EMAIL_KEY        = "keycloak:email"
+    CURRENT_USER_GIVEN_NAME_KEY   = "keycloak:given_name"
+    CURRENT_USER_FAMILY_NAME_KEY  = "keycloak:family_name"
+    CURRENT_USER_PREFERRED_USERNAME_KEY  = "keycloak:preferred_username"
+    CURRENT_USER_LOCALE_KEY       = "keycloak:locale"
+    ROLES_KEY                     = "keycloak:roles"
+    QUERY_STRING_TOKEN_KEY        = "authorizationToken"
 
     def self.current_user_id(env)
       env[CURRENT_USER_ID_KEY]
@@ -29,6 +32,30 @@ module Keycloak
 
     def self.assign_current_user_locale(env, token)
       env[CURRENT_USER_LOCALE_KEY] = token["locale"]
+    end
+
+    def self.current_user_given_name(env)
+      env[CURRENT_USER_GIVEN_NAME_KEY]
+    end
+
+    def self.assign_current_user_given_name(env, token)
+      env[CURRENT_USER_GIVEN_NAME_KEY] = token["given_name"]
+    end
+
+    def self.current_user_family_name(env)
+      env[CURRENT_USER_FAMILY_NAME_KEY]
+    end
+
+    def self.assign_current_user_family_name(env, token)
+      env[CURRENT_USER_FAMILY_NAME_KEY] = token["family_name"]
+    end
+
+    def self.current_user_preferred_username(env)
+      env[CURRENT_USER_PREFERRED_USERNAME_KEY]
+    end
+
+    def self.assign_current_user_preferred_username(env, token)
+      env[CURRENT_USER_PREFERRED_USERNAME_KEY] = token["preferred_username"]
     end
 
     def self.current_user_roles(env)

@@ -8,9 +8,9 @@ module Keycloak
       @token_expiration_tolerance_in_seconds = Keycloak.config.token_expiration_tolerance_in_seconds
     end
 
-    def decode_and_verify(token)
+    def decode_and_verify(token)      
       unless token.nil? || token&.empty?
-        public_key    = @key_resolver.find_public_keys
+        public_key    = @key_resolver.find_public_keys[0]
         decoded_token = JSON::JWT.decode(token, public_key)
 
         unless expired?(decoded_token)
